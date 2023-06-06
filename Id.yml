@@ -1,0 +1,14 @@
+ld-flags: 
+      name: LaunchDarkly Flag Evaluation
+      runs-on: ubuntu-latest
+      outputs: 
+        output1: ${{steps.flags.outputs.gha-flag}}
+      steps: 
+      -
+        name: Evaluate flags
+        id: flags
+        uses: launchdarkly/gha-flags@main
+        with:
+          sdk-key: ${{ secrets.LD_SDK_KEY }}
+          flags: |
+           gha-flag
